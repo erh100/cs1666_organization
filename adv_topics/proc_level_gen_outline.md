@@ -118,6 +118,64 @@ SDL_Surface/Rect Usage
 		* Turn around if too steep
 
 
-## Presentation IV (Nov. 16):
-* 
+## Presentation IV (Nov. 16)
+	*Overview
+		*Another Algorithm: Rapidly-exploring Random Tree
+			*How it works
+			*Where it's used
+		*Different uses of Procedural Generation
+			*Simulating Weather
+			*Simulating Destruction
+			*Simulating Events
+		*Our Game Implementation
+			*Overview of Approach
+			*Room Generation
+			*Event Generation
+	
+	*Another Algorithm: Rapidly-exploring Random Tree
+		*How it works
+			* Randomly builds a space-filling tree
+		*Variants
+		*Where it's used
+			*Efficiently searches nonconvex, high-dimensional spaces, used in 3D world creation, autonomous robotic motion planning
+	
+	*Uses of Procedural Generation
+		*Generating  Simulations
+			*Simulating Weather
+				*Through Perlin Noise (breifly as we've talked about it already)
+				*Through Markov Chains (in depth)
+					* state spaces
+					* probabalistic transitions from state to state
+					* how it's used to model phenomena
+			
+			*Simulating Destruction
+				*Destruction events have a degree of randomness.
+				*Gives more realistic look to destruction.
+				*Examples: Battlefield, Red Faction implement it the best
+
+			*Simulating Events
+				*Dynamic Worlds Require a degree of randomness.
+				*Events can be generated so the world doesn't feel empty.
+				*RPGs use this a lot.
+				*Skyrim is a great example.
+	
+	*Our implementation Overview
+		* A seed is either entered by player or randomly generated
+		* In a way it's similar perlin noise.
+		* Each element in the Int[][] represents a space for a Tile*
+		* Our algorithm fills in the Int[][], then iterates through each element to create the Tile[][]
+	*Implementation Details
+		* Int[][] -> Tile[][]
+		* Rooms
+			* Seed-based
+			* Each room begins as a single element in an int array
+			* Room size is determined randomly between a given range
+			* Algorithm flags each spot around the starting element then moves to one of them randomly
+			* This continues until flagged elements = room size
+			* Drunkard walk algorithm from starting point to room edge, which becomes the door
+			* Drunkard walk aglorithm from starting point to room edge, select objective and place around that point
+		* Event-based Objectives
+			* Puzzles
+			* Switches
+			* Pressure Plates
 
